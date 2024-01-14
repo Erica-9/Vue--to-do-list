@@ -1,19 +1,26 @@
 <template>
-    <ul>
-        <li v-for="task in tasks " :class="{ CheckAnsLayout: task.done }" style="list-style-type:none" :key="task.id">
-            <div>
-                <input type="checkbox" v-model="task.done" :class="{ CheckAns: task.done }">
-                <p :class="{ done: task.done }">{{ task.task }}</p>
-            </div>
-            <div :class="{ CheckAns: !task.done }">已完成</div>
-            <button :class="{ CheckAns: task.done }" class="DeleteList">×</button>
+    <div class="ListLayout">
+        <div class="ListButton">
+            <button @click="ChangeCheck('all')">所有代辦清單</button>
+            <button @click="ChangeCheck('NoCheck')">未完成</button>
+            <button @click="ChangeCheck('Check')">已完成</button>
+        </div>
+        <div>
+            <div>您未新增任何代辦清單</div>
+            <ul>
+                <li v-for="task in tasks " :class="{ CheckAnsLayout: task.done }" style="list-style-type:none"
+                    :key="task.id">
+                    <div>
+                        <input type="checkbox" v-model="task.done" :class="{ CheckAns: task.done }">
+                        <p :class="{ done: task.done }">{{ task.task }}</p>
+                    </div>
+                    <div :class="{ CheckAns: !task.done }">已完成</div>
+                    <button :class="{ CheckAns: task.done }" class="DeleteList" @click="DeleteList(task.id)">×</button>
 
-        </li>
-    </ul>
-    <div class="ListButton">
-        <button @click="ChangeCheck('all')">所有代辦清單</button>
-        <button @click="ChangeCheck('NoCheck')">未完成</button>
-        <button @click="ChangeCheck('Check')">已完成</button>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </template>
 
@@ -36,10 +43,15 @@ export default {
             Check.value = Change
             console.log(tasks)
         }
+        function DeleteList(id) {
+            store.dispatch("DeleteList", id);
+            console.log(store)
+        }
         console.log(tasks)
         return {
             tasks,
-            ChangeCheck
+            ChangeCheck,
+            DeleteList
         };
     }
 };

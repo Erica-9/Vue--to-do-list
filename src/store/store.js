@@ -2,7 +2,8 @@ import { createStore } from "vuex";
 export const store = createStore({
 	state() {
 		return {
-			tasks: [{ id: 1, task: "打籃球", done: true }],
+			tasks: [],
+			StartId: 1,
 		};
 	},
 	getters: {
@@ -14,13 +15,19 @@ export const store = createStore({
 		addTask(state, List) {
 			state.tasks.push(List);
 		},
-		ChangeDone(state, id) {
-			state.tasks.id.done = !state.tasks.id.done;
+		DeleteList(state, id) {
+			const DeleteData = state.tasks.findIndex((item) => item.id === id);
+			if (DeleteData !== -1) {
+				state.tasks.splice(DeleteData, 1);
+			}
 		},
 	},
 	actions: {
 		addTask(context, List) {
 			context.commit("addTask", List);
+		},
+		DeleteList(context, id) {
+			context.commit("DeleteList", id);
 		},
 	},
 });

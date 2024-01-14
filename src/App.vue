@@ -1,5 +1,5 @@
 <template>
-	<div class="ListLayout">
+	<div class="ToDoList">
 		<div class="List">
 			<PutList />
 			<List />

@@ -11,7 +11,7 @@ export default {
         const store = useStore();
         const newTask = ref("");
         const addTask = () => {
-            const list = { id: store.getters.tasksCount + 1, task: newTask.value, done: false };
+            const list = { id: store.state.StartId++, task: newTask.value, done: false };
             store.dispatch("addTask", list);
             newTask.value = "";
 
