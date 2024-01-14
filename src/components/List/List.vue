@@ -1,20 +1,25 @@
 <template>
     <div class="ListLayout">
         <div class="ListButton">
-            <button @click="ChangeCheck('all')">全部</button>
-            <button @click="ChangeCheck('NoCheck')">進行中</button>
-            <button @click="ChangeCheck('Check')">已完成</button>
+            <div>
+                <button @click="FilterList('all')" :class="{ FilterButtom: FilterButtom('all') }"
+                    class="OtherButton">全部</button>
+                <button @click="FilterList('NoCheck')" :class="{ FilterButtom: FilterButtom('NoCheck') }"
+                    class="OtherButton">進行中</button>
+            </div>
+            <button @click="FilterList('Check')" :class="{ FilterFinishButtom: FilterButtom('Check') }"
+                class="FinishButton">已完成</button>
         </div>
         <div>
-            <div>您未新增任何代辦清單</div>
             <ul>
-                <li v-for="task in tasks " :class="{ FinishList: task.done }" style="list-style-type:none" :key="task.id">
+                <li v-if="Length === 0">您未新增任何代辦清單</li>
+                <li v-for="List in Lists " :class="{ FinishList: List.done }" style="list-style-type:none" :key="List.id">
                     <div>
-                        <input type="checkbox" v-model="task.done" :class="{ ListEnd: task.done }">
-                        <p :class="{ done: task.done }">{{ task.task }}</p>
+                        <input type="checkbox" v-model="List.done" :class="{ ListEnd: List.done }">
+                        <p :class="{ done: List.done }">{{ List.task }}</p>
                     </div>
-                    <div :class="{ ListEnd: !task.done }">已完成</div>
-                    <button :class="{ ListEnd: task.done }" class="DeleteList" @click="DeleteList(task.id)">×</button>
+                    <div :class="{ ListEnd: !List.done }" class="FilishToDo">√</div>
+                    <button :class="{ ListEnd: List.done }" class="DeleteList" @click="DeleteList(List.id)">×</button>
                 </li>
             </ul>
         </div>
@@ -28,17 +33,24 @@ import "./List.css"
 export default {
     setup() {
         const store = useStore();
-        const Check = ref("all")
-        const tasks = computed(() => {
-            return Check.value == "NoCheck"
+        const ListCheck = ref("all")
+        const Lists = computed(() => {
+            return ListCheck.value == "NoCheck"
                 ? store.state.tasks.filter(i => !i.done)
-                : Check.value == "Check"
+                : ListCheck.value == "Check"
                     ? store.state.tasks.filter(i => i.done)
                     : store.state.tasks
         })
-        function ChangeCheck(Change) {
-            Check.value = Change
+        const Length = computed(() => {
+            return store.getters.tasksCount
+        })
+        function FilterList(Change) {
+            ListCheck.value = Change
             // console.log(tasks)
+        }
+        function FilterButtom(Filter) {
+            console.log(ListCheck.value == Filter)
+            return ListCheck.value == Filter
         }
         function DeleteList(id) {
             store.dispatch("DeleteList", id);
@@ -48,8 +60,10 @@ export default {
             store.dispatch("sortTask", newValue);
         })
         return {
-            tasks,
-            ChangeCheck,
+            Lists,
+            Length,
+            FilterButtom,
+            FilterList,
             DeleteList
         };
     }

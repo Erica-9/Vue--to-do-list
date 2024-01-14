@@ -15,12 +15,10 @@ export default {
             const list = { id: store.state.StartId++, task: newTask.value, done: false };
             store.dispatch("addTask", list);
             newTask.value = "";
-
         };
         return {
             newTask,
-            addTask,
-            tasks: computed(() => store.state.tasks),
+            addTask
         };
     }
 };

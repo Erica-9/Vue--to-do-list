@@ -1,17 +1,43 @@
 .ListLayout{
-    padding-top: 10px;
+    background-color: #F0F0F0;
+    border: 5px solid #F0F0F0;
+    padding: 10px 0;
+    border-radius:  5px ;
+    margin-top: 10px;
 }
 .ListButton{
     width: 100%;
     display: flex;
+    justify-content: space-between;
+}
+.FilterButtom{
+    background-color: rgb(255, 255, 255);
+}
+.FinishButton{
+    height: 35px;
+    padding: 0 5px;
+    border-radius: 5px 5px 0 0;
+    border: 0px;
+}
+.FilterFinishButtom{
+    background-color: rgb(189, 189, 189);
+}
+.OtherButton{
+    height: 35px;
+    padding: 0 5px;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    border: 0px;
 }
 ul{
+    background-color: white;
+    padding: 0;
     width: 100%;
-    padding: 0 ;
     margin: 0;
 }
 ul li{
-    padding: 0 10px;
+    border-bottom: 3px solid #F0F0F0;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,6 +59,10 @@ li p{
 }
 .ListEnd{
     display: none
+}
+.FilishToDo{
+    color: #00a326;
+    font-weight: bold;
 }
 .DeleteList{
     padding: 0 0 0 10px;
