@@ -6,6 +6,7 @@
 <script>
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import "./PutList.css";
 export default {
     setup() {
         const store = useStore();

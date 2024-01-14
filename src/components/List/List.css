@@ -1,0 +1,46 @@
+.ListLayout{
+    padding-top: 10px;
+}
+.ListButton{
+    width: 100%;
+    display: flex;
+}
+ul{
+    width: 100%;
+    padding: 0 ;
+    margin: 0;
+}
+ul li{
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+li div{
+    margin: 10px 0;
+    display: flex;
+}
+li input{
+    zoom: 130%;
+    margin: 1px 10px 0 5px;
+}
+li p{
+    margin: 0;
+}
+.FinishList{
+    background-color: rgb(189, 189, 189);
+    list-style: circle;
+}
+.ListEnd{
+    display: none
+}
+.DeleteList{
+    padding: 0 0 0 10px;
+    color: red;
+    font-size: 40px;
+    background-color: rgba(255, 222, 173, 0);
+    border: 0px;
+}
+.done {
+    text-decoration: line-through;
+}

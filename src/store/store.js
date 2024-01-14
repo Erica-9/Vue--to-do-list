@@ -21,6 +21,9 @@ export const store = createStore({
 				state.tasks.splice(DeleteData, 1);
 			}
 		},
+		sortTask(state, List) {
+			state.tasks = List.sort((a, b) => a.done - b.done);
+		},
 	},
 	actions: {
 		addTask(context, List) {
@@ -28,6 +31,9 @@ export const store = createStore({
 		},
 		DeleteList(context, id) {
 			context.commit("DeleteList", id);
+		},
+		sortTask(context, List) {
+			context.commit("sortTask", List);
 		},
 	},
 });
