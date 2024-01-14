@@ -39,6 +39,10 @@ export default {
                     ? store.state.tasks.filter(i => i.done)
                     : store.state.tasks
         })
+        const CountList = function () {
+            this.tasks.value.done.sort((a, b) => a - b);
+        }
+        console.log(tasks.value); //這裡
         function ChangeCheck(Change) {
             Check.value = Change
             console.log(tasks)
