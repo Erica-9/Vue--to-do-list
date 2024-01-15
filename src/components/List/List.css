@@ -75,7 +75,7 @@ li p{
 }
 .DeleteList{
     padding: 0 0 0 10px;
-    color: red;
+    color: rgb(0, 0, 0);
     font-size: 40px;
     background-color: rgba(255, 222, 173, 0);
     border: 0px;
