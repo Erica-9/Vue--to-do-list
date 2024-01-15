@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input v-model="newTask" @keyup.enter="addTask" placeholder="輸入你的代辦事項..." class="ListInput" />
+        <input v-model="NewTask" @keyup.enter="AddTask" placeholder="輸入你的代辦事項..." class="ListInput" />
     </div>
 </template>
 <script>
@@ -10,20 +10,20 @@ import "./PutList.css";
 export default {
     setup() {
         const store = useStore();
-        const newTask = ref("");
-        const addTask = () => {
-            if (newTask.value == "") {
+        const NewTask = ref("");
+        const AddTask = () => {
+            if (NewTask.value == "") {
 
             } else {
-                const list = { id: store.state.StartId++, task: newTask.value, done: false };
-                store.dispatch("addTask", list);
-                newTask.value = "";
+                const list = { id: store.state.StartId++, task: NewTask.value, done: false };
+                store.dispatch("AddTask", list);
+                NewTask.value = "";
             }
 
         };
         return {
-            newTask,
-            addTask
+            NewTask,
+            AddTask
         };
     }
 };

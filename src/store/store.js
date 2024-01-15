@@ -7,12 +7,12 @@ export const store = createStore({
 		};
 	},
 	getters: {
-		tasksCount: (state) => {
+		TasksCount: (state) => {
 			return state.tasks.length;
 		},
 	},
 	mutations: {
-		addTask(state, List) {
+		AddTask(state, List) {
 			state.tasks.push(List);
 		},
 		DeleteList(state, id) {
@@ -21,7 +21,7 @@ export const store = createStore({
 				state.tasks.splice(DeleteData, 1);
 			}
 		},
-		sortTask(state, List) {
+		SortTask(state, List) {
 			state.tasks = List.sort((a, b) => a.done - b.done);
 		},
 		ClearList(state) {
@@ -29,14 +29,14 @@ export const store = createStore({
 		},
 	},
 	actions: {
-		addTask(context, List) {
-			context.commit("addTask", List);
+		AddTask(context, List) {
+			context.commit("AddTask", List);
 		},
 		DeleteList(context, id) {
 			context.commit("DeleteList", id);
 		},
-		sortTask(context, List) {
-			context.commit("sortTask", List);
+		SortTask(context, List) {
+			context.commit("SortTask", List);
 		},
 	},
 });

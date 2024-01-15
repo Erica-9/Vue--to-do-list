@@ -2,7 +2,7 @@
     <div class="ListLayout">
         <div class="ListButton">
             <div>
-                <button @click="FilterList('all')" :class="{ FilterButtom: FilterButtom('all') }"
+                <button @click="FilterList('All')" :class="{ FilterButtom: FilterButtom('All') }"
                     class="OtherButton">全部</button>
                 <button @click="FilterList('NoCheck')" :class="{ FilterButtom: FilterButtom('NoCheck') }"
                     class="OtherButton">進行中</button>
@@ -45,7 +45,7 @@ export default {
                     : store.state.tasks
         })
         const Length = computed(() => {
-            return store.getters.tasksCount
+            return store.getters.TasksCount
         })
         function FilterList(Change) {
             ListCheck.value = Change
@@ -64,7 +64,7 @@ export default {
         }
         console.log(store.state.tasks)
         watch(store.state.tasks, (newValue) => {
-            store.dispatch("sortTask", newValue);
+            store.dispatch("SortTask", newValue);
             console.log(store.state.tasks)
         })
         return {
