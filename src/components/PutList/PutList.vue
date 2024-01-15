@@ -12,9 +12,14 @@ export default {
         const store = useStore();
         const newTask = ref("");
         const addTask = () => {
-            const list = { id: store.state.StartId++, task: newTask.value, done: false };
-            store.dispatch("addTask", list);
-            newTask.value = "";
+            if (newTask.value == "") {
+
+            } else {
+                const list = { id: store.state.StartId++, task: newTask.value, done: false };
+                store.dispatch("addTask", list);
+                newTask.value = "";
+            }
+
         };
         return {
             newTask,

@@ -13,8 +13,8 @@
         <div>
             <ul>
                 <li v-if="Length === 0">您未新增任何代辦清單</li>
-                <li v-for="List in Lists " :class="{ FinishList: List.done }" style="list-style-type:none" :key="List.id">
-                    <div>
+                <li v-for="List in Lists " :class="{ FinishList: List.done }" :key="List.id">
+                    <div class="ListContent">
                         <input type="checkbox" v-model="List.done" :class="{ ListEnd: List.done }">
                         <p :class="{ done: List.done }">{{ List.task }}</p>
                     </div>
@@ -22,6 +22,9 @@
                     <button :class="{ ListEnd: List.done }" class="DeleteList" @click="DeleteList(List.id)">×</button>
                 </li>
             </ul>
+        </div>
+        <div class="ClearButton">
+            <button class="ClearList" @click="ClearList">清除所有任務</button>
         </div>
     </div>
 </template>
@@ -49,22 +52,28 @@ export default {
             // console.log(tasks)
         }
         function FilterButtom(Filter) {
-            console.log(ListCheck.value == Filter)
+            // console.log(ListCheck.value == Filter)
             return ListCheck.value == Filter
         }
         function DeleteList(id) {
             store.dispatch("DeleteList", id);
             // console.log(store)
         }
+        function ClearList() {
+            store.commit('ClearList');
+        }
+        console.log(store.state.tasks)
         watch(store.state.tasks, (newValue) => {
             store.dispatch("sortTask", newValue);
+            console.log(store.state.tasks)
         })
         return {
             Lists,
             Length,
             FilterButtom,
             FilterList,
-            DeleteList
+            DeleteList,
+            ClearList
         };
     }
 };

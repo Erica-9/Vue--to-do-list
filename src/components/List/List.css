@@ -36,13 +36,17 @@ ul{
     margin: 0;
 }
 ul li{
+    height: auto;
+    list-style-type: none;
     border-bottom: 3px solid #F0F0F0;
     padding: 0 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-li div{
+.ListContent{
+    min-width: 80%;
+    height: auto;
     margin: 10px 0;
     display: flex;
 }
@@ -51,6 +55,9 @@ li input{
     margin: 1px 10px 0 5px;
 }
 li p{
+    max-width: 95%;
+    word-wrap:break-word;
+    height: auto;
     margin: 0;
 }
 .FinishList{
@@ -73,4 +80,21 @@ li p{
 }
 .done {
     text-decoration: line-through;
+}
+.ClearButton{
+    display: flex;
+    justify-content: center;
+}
+.ClearList{
+    border: 3px solid blue;
+    border-radius: 5px;
+    padding: 5px;
+    color: blue;
+    margin-top: 10px;
+    font-size: 20px;
+    transition-duration: 0.5s;
+}
+.ClearList:hover{
+    color: white;
+    background-color: blue;
 }

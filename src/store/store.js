@@ -24,6 +24,9 @@ export const store = createStore({
 		sortTask(state, List) {
 			state.tasks = List.sort((a, b) => a.done - b.done);
 		},
+		ClearList(state) {
+			state.tasks.splice(0, state.tasks.length);
+		},
 	},
 	actions: {
 		addTask(context, List) {
