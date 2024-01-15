@@ -68,6 +68,8 @@ li p{
     display: none
 }
 .FilishToDo{
+    padding: 0 0 0 10px;
+    font-size: 30px;
     color: #00a326;
     font-weight: bold;
 }
