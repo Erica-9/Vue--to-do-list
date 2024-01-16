@@ -36,8 +36,9 @@ import "./List.css"
 export default {
     setup() {
         const store = useStore();
-        const ListCheck = ref("all")
+        const ListCheck = ref("All")
         const Lists = computed(() => {
+            //篩選要顯示的清單
             return ListCheck.value == "NoCheck"
                 ? store.state.tasks.filter(i => !i.done)
                 : ListCheck.value == "Check"
@@ -45,25 +46,31 @@ export default {
                     : store.state.tasks
         })
         const Length = computed(() => {
+            //有無代辦清單的判斷依據
             return store.getters.TasksCount
         })
         function FilterList(Change) {
+            //完成代辦清單
             ListCheck.value = Change
             // console.log(tasks)
         }
         function FilterButtom(Filter) {
+            //指定現在要篩選的代辦清單進ref
             // console.log(ListCheck.value == Filter)
             return ListCheck.value == Filter
         }
         function DeleteList(id) {
+            //刪除這筆代辦清單
             store.dispatch("DeleteList", id);
             // console.log(store)
         }
         function ClearList() {
+            // 清空
             store.commit('ClearList');
         }
         console.log(store.state.tasks)
         watch(store.state.tasks, (newValue) => {
+            // 是否重新排序的監聽
             store.dispatch("SortTask", newValue);
             console.log(store.state.tasks)
         })
